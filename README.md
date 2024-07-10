@@ -18,6 +18,8 @@ https://blog.csdn.net/sinat_25415095/article/details/121176468
 
 4.键盘秘钥地址：https://learn.microsoft.com/zh-cn/windows/win32/inputdev/virtual-key-codes
 
+5.打开透明背景，需要关闭：Project Setting-Resoulution and Presentation -Use DXGI filp model swapchain for D3D11
+
 注1： 创建托盘小窗后，通过托盘小窗/win右上角关闭按钮直接关闭，会产生莫名崩溃
       该bug尚未解决，避免方式为：打开UI中的拦截最大化最小化关闭UI。
       疑似是NotifyIcon没有释放，在关闭窗体的时候，没有优先调用notifyicon的GC，暂无办法根治
@@ -26,4 +28,4 @@ https://blog.csdn.net/sinat_25415095/article/details/121176468
       这是因为在UI选中的时候，才会取消穿透交互。最优方案是不需要点击该程序就可以继续交互，但暂无方案
 
 
-![Image](https://github.com/SadasyKing/Unity-WindowsAPI/blob/main/winapi.png)
+![Image](https://github.com/SadasyKing/Unity-WindowsAPI/blob/main/Assets/winapi.png)

@@ -1,0 +1,8 @@
+*.vsconfig
+Library/
+ProjectSettings/
+Temp/
+Logs/
+Packages/
+*.meta
+UserSettings/

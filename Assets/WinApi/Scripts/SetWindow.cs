@@ -60,6 +60,13 @@ public class SetWindow : MonoBehaviour
     /// </summary>
     public InputField filePath;
 
+    /// <summary>
+    /// 读取命令行参数
+    /// </summary>
+    public Text argsContent;
+    public static string[] args;
+
+
     Rect _rect;
 
     CameraClearFlags originalCameraClearFlags;
@@ -70,17 +77,21 @@ public class SetWindow : MonoBehaviour
 
     #region 生命周期
 
-    //    //这个函数被视为：程序入口
-    //    [RuntimeInitializeOnLoadMethod(RuntimeInitializeLoadType.BeforeSceneLoad)]
-    //    static void MyMain()
-    //    {
-    //#if UNITY_STANDALONE_WIN && !UNITY_EDITOR
-    //                if (!Screen.fullScreen)
-    //                {
-    //                    SetNoFrame(false);
-    //                }
-    //#endif
-    //    }
+    //这个函数被视为：程序入口
+    [RuntimeInitializeOnLoadMethod(RuntimeInitializeLoadType.BeforeSceneLoad)]
+    static void MyMain()
+    {
+        args = Environment.GetCommandLineArgs();
+
+        /*
+#if UNITY_STANDALONE_WIN && !UNITY_EDITOR
+                    if (!Screen.fullScreen)
+                    {
+                        SetNoFrame(false);
+                    }
+#endif
+        */
+    }
 
     /// <summary>
     /// 首先获取窗口句柄，设置分辨率和窗口Rect
@@ -94,7 +105,7 @@ public class SetWindow : MonoBehaviour
         winTool.SetHandle();
 #endif
 #if UNITY_STANDALONE_WIN
-        winTool.SetHandle(Application.productName);
+        winTool.SetHandle(UnityEngine.Application.productName);
 #endif
         //currentWindow = WindowsTools.GetForegroundWindow();
         InitResolutionArgs();
@@ -107,6 +118,11 @@ public class SetWindow : MonoBehaviour
         originalCameraBackground = currentCamera.backgroundColor;
         dragUI = new DoubleClickClass();
         doubuleClick = new Action(SetFullScreen);
+
+        for (int i = 0; i < args.Length; i++)
+        {
+            argsContent.text += $"args[{i}]: " + args[i] + "\n";
+        }
     }
 
     private void Update()

@@ -6,3 +6,8 @@ Logs/
 Packages/
 *.meta
 UserSettings/
+*.sln
+Build/
+obj/
+.vs/
+*.csproj

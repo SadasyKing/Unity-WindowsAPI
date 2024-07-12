@@ -28,4 +28,4 @@ https://blog.csdn.net/sinat_25415095/article/details/121176468
       这是因为在UI选中的时候，才会取消穿透交互。最优方案是不需要点击该程序就可以继续交互，但暂无方案
 
 
-![Image](https://github.com/SadasyKing/Unity-WindowsAPI/blob/main/Assets/winapi.png)
+![Image](https://github.com/SadasyKing/Unity-WindowsAPI/blob/main/winapi.png)

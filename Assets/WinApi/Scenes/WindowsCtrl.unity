@@ -408,8 +408,8 @@ MonoBehaviour:
     m_RichText: 1
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
-    m_LineSpacing: 1
-  m_Text: Creator:Sadasy
+    m_LineSpacing: 0.75
+  m_Text: "<size=25>\u4E0D\u53EF\u9009\u4E2D\u7684UI\u4EE3\u8868\u529F\u80FD\u672A\u5B8C\u5584</size>\nCreator:Sadasy"
 --- !u!222 &19880648
 CanvasRenderer:
   m_ObjectHideFlags: 0

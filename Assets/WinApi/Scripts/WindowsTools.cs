@@ -767,15 +767,16 @@ public class WindowsTools
         }
         _notifyIcon = new NotifyIcon();
         _notifyIconS = _notifyIcon;
-        //_notifyIcon.BalloonTipText = "Sadasy";//托盘气泡显示内容
+        _notifyIcon.BalloonTipText = "Sadasy";//托盘气泡显示内容
         _notifyIcon.Text = "Sadasy的图标提示";//鼠标悬浮时显示的内容
         _notifyIcon.Visible = true;
         _notifyIcon.Icon = CustomTrayIcon(UnityEngine.Application.streamingAssetsPath + "/icon.png", 100, 100);
         MenuItem closeMenu = new MenuItem("关闭");
-        MenuItem[] menuItems = new MenuItem[] { closeMenu };
+        MenuItem closeMenu_ = new MenuItem("切换鼠标");
+        MenuItem[] menuItems = new MenuItem[] { closeMenu, closeMenu_ };
         _notifyIcon.ContextMenu = new System.Windows.Forms.ContextMenu(menuItems);
         closeMenu.Click += OnMenuClose;
-
+        closeMenu_.Click += ChangeMouse;
         _notifyIcon.MouseClick += notifyIcon_MouseClick;
     }
     /// <summary>
@@ -808,6 +809,16 @@ public class WindowsTools
         CloseWindow(myWindowHandle);
         PostMessage(myWindowHandle, WM_SYSCOMMAND, SC_CLOSE, 0);
     }
+    bool isChange;
+    private void ChangeMouse(object sender, EventArgs e)
+    {
+        if (isChange)
+            System.Windows.Forms.Cursor.Current = Cursors.VSplit;
+        else
+            System.Windows.Forms.Cursor.Current = Cursors.Default;
+        isChange = !isChange;
+    }
+
 
     /// <summary>
     /// 绘制图标
@@ -945,21 +956,29 @@ public class WindowsTools
     //[DllImport("user32.dll")]
     //public static extern void SetHandCursor(IntPtr ptr,);
 
+    /*public void CursorState()
+    {
+        Debug.Log(System.Windows.Forms.Cursor.Current);
+    }*/
+    /*
     /// <summary>
     /// 修改鼠标指针
     /// </summary>
     /// <param name="isOn"></param>
     public void SystemCursor(bool isOn)
     {
+        //UnityEngine.Cursor
         System.Windows.Forms.Cursor cursor = new System.Windows.Forms.Cursor(myWindowHandle);
         Debug.Log(cursor.Handle.ToString());
+        Debug.Log(System.Windows.Forms.Cursor.Current);
         //cursor.current
         //UnityEngine.Cursor.SetCursor(new Texture2D(0, 0), Vector2.zero, CursorMode.Auto);
         if (isOn)
-            System.Windows.Forms.Cursor.Current = Cursors.Hand;
+            System.Windows.Forms.Cursor.Current = Cursors.WaitCursor;
         else
             System.Windows.Forms.Cursor.Current = Cursors.Default;
-    }
+    }*/
+
     /// <summary>
     /// 限制鼠标范围
     /// </summary>

@@ -127,6 +127,19 @@ public class WindowsTools
     /// <param name="alpha"></param>
     [DllImport("user32.dll", SetLastError = true)]
     public static extern int SetLayeredWindowAttributes(IntPtr hwnd, uint crKey, byte bAlpha, uint dwFlags);
+
+
+
+    /// <summary>
+    /// 限制鼠标范围
+    /// </summary>
+    /// <param name="lpRect"></param>
+    /// <returns></returns>
+    [DllImport("user32.dll")]
+    public static extern bool ClipCursor(IntPtr lpRect);
+    [DllImport("user32.dll")]
+    [return: MarshalAs(UnmanagedType.Bool)]
+    public static extern bool ClipCursor(ref Rectangle lpRect);
     #endregion
 
     #region 变量相关
@@ -923,6 +936,47 @@ public class WindowsTools
         m_OldWndProcPtr = IntPtr.Zero;
         wndProcPtr = IntPtr.Zero;
         wndProc = null;
+    }
+
+    #endregion
+
+    #region 鼠标指针
+
+    //[DllImport("user32.dll")]
+    //public static extern void SetHandCursor(IntPtr ptr,);
+
+    /// <summary>
+    /// 修改鼠标指针
+    /// </summary>
+    /// <param name="isOn"></param>
+    public void SystemCursor(bool isOn)
+    {
+        System.Windows.Forms.Cursor cursor = new System.Windows.Forms.Cursor(myWindowHandle);
+        Debug.Log(cursor.Handle.ToString());
+        //cursor.current
+        //UnityEngine.Cursor.SetCursor(new Texture2D(0, 0), Vector2.zero, CursorMode.Auto);
+        if (isOn)
+            System.Windows.Forms.Cursor.Current = Cursors.Hand;
+        else
+            System.Windows.Forms.Cursor.Current = Cursors.Default;
+    }
+    /// <summary>
+    /// 限制鼠标范围
+    /// </summary>
+    /// <param name="isOn"></param>
+    public void ClipCursor(bool isOn)
+    {
+        if (isOn)
+        {
+            Rectangle rect = new Rectangle();
+            GetWindowRect(myWindowHandle, out rect);
+
+            ClipCursor(ref rect);
+        }
+        else
+        {
+            ClipCursor(IntPtr.Zero);
+        }
     }
 
     #endregion

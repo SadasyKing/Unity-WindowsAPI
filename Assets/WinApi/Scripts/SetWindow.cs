@@ -511,6 +511,24 @@ public class SetWindow : MonoBehaviour
     }
     #endregion
 
+    #region 修改鼠标系统指针
+    public void SystemCursor(bool isOn)
+    {
+        winTool.SystemCursor(isOn);
+        /*
+        if (isOn)
+            winTool.SystemCursor(EventSystem.current.IsPointerOverGameObject());*/
+    }
+    /// <summary>
+    /// 限制鼠标范围
+    /// </summary>
+    /// <param name="isOn"></param>
+    public void ClipCursor(bool isOn)
+    {
+        winTool.ClipCursor(isOn);
+    }
+    #endregion
+
     public void OnApplicationQuit()
     {
         winTool.SetHookFunc(false);

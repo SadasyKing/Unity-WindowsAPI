@@ -6,8 +6,7 @@ https://download.csdn.net/download/luoyikun/87362220
 
 https://blog.csdn.net/sinat_25415095/article/details/121176468
       
-使用时，可直接参照场景：Scene-WindowsCtrl场景下的UI绑定的函数进行学习调用。
-所有脚本绑定在该场景下的Windows物体上，TopWindows是另外的置顶窗口脚本，需要另外调用。
+使用时，可直接参照场景：Scene-WindowsCtrl场景下的UI绑定的函数进行学习调用。所有脚本绑定在该场景下的Windows物体上。
 
 注意事项：
 1.注意键盘钩子的释放。如果需要多个键盘钩子默认启用，将streamingAssets下的winhook.json中增加键盘秘钥即可。
